@@ -14,14 +14,14 @@ import java.util.Map;
 
 import static com.java_rmi.data_conector.CSVReader.readDataCSV;
 
-public class ServerImplement extends UnicastRemoteObject implements ServerInterface {
+public class ServerImplementation extends UnicastRemoteObject implements ServerInterface {
     private Map<String, Long> populationCache; // Cache for getPopulationOfCountry results
     private Map<String, Integer> cityCache; // Cache for getNumberOfCities results
     private Map<String, Integer> countryCache; // Cache for getNumberOfCountries results
     private int load;
     private int waitingList;
 
-    public ServerImplement() throws RemoteException {
+    public ServerImplementation() throws RemoteException {
         super();
         this.populationCache = new LinkedHashMap<>(150, 0.75f, true); // LRU Cache for population
         this.cityCache = new LinkedHashMap<>(150, 0.75f, true); // LRU Cache for city counts
@@ -144,7 +144,7 @@ public class ServerImplement extends UnicastRemoteObject implements ServerInterf
                 try {
                     // Crie o registro RMI para o LoadBalancerServer
                     Registry registry = LocateRegistry.createRegistry(1099);
-                    ServerImplement server = new ServerImplement();
+                    ServerImplementation server = new ServerImplementation();
                     registry.bind("LoadBalancer", server);
                     // Registre o LoadBalancerServer no registro RMI com o nome "LoadBalancer"
                     registry.rebind("LoadBalancer", loadBalancer);
