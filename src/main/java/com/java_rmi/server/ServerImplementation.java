@@ -26,25 +26,21 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerI
     private int waitingList;
 
     /**
-     * Constructor for ServerImplement. Initializes caches and other instance variables.
-     *
      * @throws RemoteException if there is an issue with RMI.
      */
     public ServerImplementation() throws RemoteException {
         super();
-        this.populationCache = new LinkedHashMap<>(150, 0.75f, true); // LRU Cache for population
-        this.cityCache = new LinkedHashMap<>(150, 0.75f, true); // LRU Cache for city counts
-        this.countryCache = new LinkedHashMap<>(150, 0.75f, true); // LRU Cache for country counts
+        this.populationCache = new LinkedHashMap<>(150, 0.75f, true);
+        this.cityCache = new LinkedHashMap<>(150, 0.75f, true);
+        this.countryCache = new LinkedHashMap<>(150, 0.75f, true);
         this.load = 0;
         this.waitingList = 0;
     }
 
     /**
      * Retrieves the population of a country by country name.
-     *
      * @param countryName the name of the country.
      * @return the population of the specified country.
-     * @throws RemoteException if there is an issue with RMI.
      */
     public long getPopulationOfCountry(String countryName) throws RemoteException {
         // Check if the result is in the cache
@@ -52,7 +48,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerI
             return populationCache.get(countryName);
         }
 
-        // If not found in cache, perform the operation and add to cache
+        // If not found in cache, perform the operation and add to cache.
         long sum = 0;
         for (GeoData geoData : readDataCSV()) {
             if (geoData.getCountryNameEn().equalsIgnoreCase(countryName)) {
@@ -60,24 +56,20 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerI
             }
         }
 
-        // Add the result to the cache
         populationCache.put(countryName, sum);
         return sum;
     }
 
     /**
      * Retrieves the number of cities in a country with a minimum population.
-     *
      * @param countryName   the name of the country.
      * @param minPopulation the minimum population required for a city to be counted.
      * @return the number of cities in the specified country.
-     * @throws RemoteException if there is an issue with RMI.
      */
     public int getNumberOfCities(String countryName, int minPopulation) throws RemoteException {
         // Create a cache key based on the method parameters
         String cacheKey = "getNumberOfCities:" + countryName + ":" + minPopulation;
 
-        // Check if the result is in the cache
         if (cityCache.containsKey(cacheKey)) {
             return cityCache.get(cacheKey);
         }
@@ -90,18 +82,15 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerI
             }
         }
 
-        // Add the result to the cache
         cityCache.put(cacheKey, cityCount);
         return cityCount;
     }
 
     /**
      * Retrieves the number of countries with a minimum population and a minimum number of cities.
-     *
      * @param cityCount     the minimum number of cities required.
      * @param minPopulation the minimum population required for a country to be counted.
      * @return the number of countries that meet the criteria.
-     * @throws RemoteException if there is an issue with RMI.
      */
     public int getNumberOfCountries(int cityCount, int minPopulation) throws RemoteException {
         // Create a cache key based on the method parameters
@@ -112,7 +101,6 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerI
             return countryCache.get(cacheKey);
         }
 
-        // If not found in cache, perform the operation and add to cache
         int countryCount = 0;
         for (GeoData geoData : readDataCSV()) {
             if (geoData.getPopulation() >= minPopulation) {
@@ -122,19 +110,16 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerI
             }
         }
 
-        // Add the result to the cache
         countryCache.put(cacheKey, countryCount);
         return countryCount;
     }
 
     /**
      * Retrieves the number of countries within a population range and with a minimum number of cities.
-     *
      * @param cityCount     the minimum number of cities required.
      * @param minPopulation the minimum population required for a country to be counted.
      * @param maxPopulation the maximum population required for a country to be counted.
      * @return the number of countries that meet the criteria.
-     * @throws RemoteException if there is an issue with RMI.
      */
     public int getNumberOfCountries(int cityCount, int minPopulation, int maxPopulation) throws RemoteException {
         // Create a cache key based on the method parameters
@@ -155,14 +140,12 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerI
                 }
             }
         }
-        // Add the result to the cache
         countryCache.put(cacheKey, countryCount);
         return countryCount;
     }
 
     /**
      * Retrieves server load information.
-     *
      * @return a ServerLoad object containing load and waiting list information.
      * @throws RemoteException if there is an issue with RMI.
      */
@@ -174,14 +157,13 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerI
 
     /**
      * Main method for starting the RMI server and load balancer.
-     *
      * @param args command-line arguments (not used).
      */
     public static void main(String[] args) {
         try {
-            // Create a list of server information (replace with your own information)
+            // Create a list of server information
             List<Server> servers = new ArrayList<>();
-            servers.add(new Server("Server1", 1, 1098)); // Example server information
+            servers.add(new Server("Server1", 1, 1098));
             servers.add(new Server("Server2", 2, 1097));
             servers.add(new Server("Server3", 3, 1096));
             servers.add(new Server("Server4", 4, 1095));

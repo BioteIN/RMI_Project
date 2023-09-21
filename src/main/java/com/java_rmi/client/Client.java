@@ -15,17 +15,30 @@ import java.rmi.registry.Registry;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * The `Client` class represents a client application that interacts with a load balancer
+ * and a remote server using Java RMI.
+ * It reads input data, performs remote method calls on servers, and manages client-side caching.
+ */
 public class Client {
-    private static Map<String, Long> clientCache; // Client-side cache for method results
-    private static final int CLIENT_CACHE_LIMIT = 45; // Maximum cache size
-    private static Map<String, Long> executionTimes; // Map to store execution times for each method
+    // Client-side cache for method results
+    private static Map<String, Long> clientCache;
+    // Maximum cache size
+    private static final int CLIENT_CACHE_LIMIT = 45;
+    private static Map<String, Long> executionTimes;
 
-
+    /**
+     * Calls a remote method on a server and measures execution time.
+     * @param server     The remote server interface.
+     * @param methodName The name of the method to invoke.
+     * @return The result of the remote method call.
+     */
     private static long callServerMethod(ServerInterface server, String methodName, String[] args) {
         try {
             long startTime = System.currentTimeMillis();
-            // Invoke the appropriate server method based on the methodName and pass the arguments
             long result = 0;
+
+            // Call the appropriate server method based on the methodName and pass the arguments
             if (methodName.equals("getPopulationofCountry")) {
                 if (args.length == 1) {
                     result = server.getPopulationOfCountry(args[0]);
@@ -36,20 +49,24 @@ public class Client {
                 }
             } else if (methodName.equals("getNumberofCountries")) {
                 if (args.length == 2) {
-                    result = server.getNumberOfCountries(server.getNumberOfCities(args[0], Integer.parseInt(args[1])), Integer.parseInt(args[1]));
+                    result = server.getNumberOfCountries(
+                            server.getNumberOfCities(args[0], Integer.parseInt(args[1])),
+                            Integer.parseInt(args[1])
+                    );
                 } else if (args.length == 3) {
-                    result = server.getNumberOfCountries(server.getNumberOfCities(args[0], Integer.parseInt(args[1])), Integer.parseInt(args[1]), Integer.parseInt(args[2]));
+                    result = server.getNumberOfCountries(
+                            server.getNumberOfCities(args[0], Integer.parseInt(args[1])),
+                            Integer.parseInt(args[1]),
+                            Integer.parseInt(args[2])
+                    );
                 }
             }
 
             long endTime = System.currentTimeMillis();
             long executionTime = endTime - startTime;
-
-            // Calculate turnaround time and waiting time (assuming no waiting time)
-            long turnAroundTime = executionTime;
+            long turnAroundTime = executionTime; // Calculate turnaround time and waiting time
             long waitingTime = 0;
 
-            // Return the result as a formatted string
             return result;
 
         } catch (RemoteException e) {
@@ -58,9 +75,11 @@ public class Client {
         }
     }
 
+    /**
+     * Calculates and prints average execution times for methods.
+     * @throws IOException If an error occurs while writing to output files.
+     */
     private static void calculateAndPrintAverageTimes() throws IOException {
-      
-        // Initialize variables to store total times and counts
         long allTurnAroundTime = 0;
         long allExecutionTime = 0;
 
@@ -68,26 +87,25 @@ public class Client {
         for (Map.Entry<String, Long> entry : executionTimes.entrySet()) {
             String methodName = entry.getKey();
             long executionTime = entry.getValue();
+
             // Calculate total turnaround time and execution time
             allTurnAroundTime += executionTime;
             allExecutionTime += executionTime;
 
-            // Print execution time for each method
             System.out.println("Method name: " + methodName + ", execution Time: " + executionTime + " ms");
         }
 
         // Calculate average turnaround time and execution time
-        double avgturnAroundTime = (double) allTurnAroundTime / executionTimes.size();
+        double avgTurnAroundTime = (double) allTurnAroundTime / executionTimes.size();
         double avgExecutionTime = (double) allExecutionTime / executionTimes.size();
 
-        System.out.println("Average turnaround time: " + avgturnAroundTime + " ms");
-        System.out.println("Average execution time: " + avgExecutionTime + " ms");
+        System.out.println("Average turnaround time: " + avgTurnAroundTime + " ms "+"\nAverage execution time: " + avgExecutionTime + " ms");
     }
 
     public static void main(String[] args) {
         try {
             // Initialize RMI registry connection to the LoadBalancer
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099); // Change "localhost" if LoadBalancer is on a different machine
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             LoadBalancerInterface loadBalancer = (LoadBalancerInterface) registry.lookup("LoadBalancer");
 
             // Initialize client-side cache
@@ -102,8 +120,8 @@ public class Client {
             executionTimes = new LinkedHashMap<>();
 
             // Input and output file paths
-            String inputFile = "src\\main\\java\\com\\java_rmi\\client\\exercise_1_input.txt"; // Update with your input file path
-            String outputFile = "src\\main\\java\\com\\java_rmi\\client\\client_cache.txt"; // Update with your output file path
+            String inputFile = "src\\main\\java\\com\\java_rmi\\client\\exercise_1_input.txt";
+            String outputFile = "src\\main\\java\\com\\java_rmi\\client\\client_cache.txt"; //Specify the output file path for the client cache.
 
             String naiveServerOutputFile = "src\\main\\java\\com\\java_rmi\\server\\naive_server.txt"; // Specify the output file path for the naive server
             String serverCacheOutputFile = "src\\main\\java\\com\\java_rmi\\server\\server_cache.txt"; // Specify the output file path for the server with caching
@@ -127,17 +145,15 @@ public class Client {
                     System.arraycopy(elementsLine, 1, argsArray, 0, elementsLine.length - 2);
                     int zone = Integer.parseInt(elementsLine[elementsLine.length - 1].substring(5));
 
-                    // Create a cache key based on the method name and arguments
                     String cacheKey = methodName + String.join(":", argsArray);
 
-                    // Check if the result is in the client-side cache
                     if (clientCache.containsKey(cacheKey)) {
                         ServerAllocation serverAllocation = loadBalancer.requestServerAllocation(zone);
 
                         long cachedResult1 = clientCache.get(cacheKey);
                         String resultTime1 = " (cached)";
-                        String outputselectedLine = cachedResult1 + " " + selectedLine + " " + resultTime1 + ", processed by Server " + serverAllocation.getServerName() + ")\n";
-                        writer.write(outputselectedLine);
+                        String outputSelectedLine = cachedResult1 + " " + selectedLine + " " + resultTime1 + ", processed by Server " + serverAllocation.getServerName() + ")\n";
+                        writer.write(outputSelectedLine);
                     } else {
                         // Make a remote method call to the LoadBalancer to get server assignment
                         ServerAllocation serverAllocation = loadBalancer.requestServerAllocation(zone);
@@ -149,16 +165,16 @@ public class Client {
                         long executionTime = endTime - startTime;
                         long turnAroundTime = executionTime;
                         long waitingTime = 0;
-                        // Return the result as a formatted string
+
                         String resultTime1 = "turnaround time: " + turnAroundTime + " ms, execution time: " + executionTime + " ms, waiting time: " + waitingTime + " ms)";
-                        // Generate the output selectedLine
+
                         String outputSelectedLine = result1 + " " + selectedLine + " " + resultTime1 + ", processed by Server " + serverAllocation.getServerName() + ")\n";
 
                         // Write the output selectedLine to the file
                         writer.write(outputSelectedLine);
                         naiveServerWriter.write(outputSelectedLine);
                         serverCacheWriter.write(outputSelectedLine);
-                        // Add the result to the client-side cache
+
                         clientCache.put(cacheKey, result1);
                     }
                 }
@@ -168,7 +184,7 @@ public class Client {
             writer.close();
             naiveServerWriter.close();
             serverCacheWriter.close();
-            // Calculate and print average turnaround time, execution time, and waiting time for each method
+
             calculateAndPrintAverageTimes();
 
         } catch (Exception e) {

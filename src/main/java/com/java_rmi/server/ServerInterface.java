@@ -10,49 +10,39 @@ import java.rmi.RemoteException;
 public interface ServerInterface extends Remote {
     /**
      * Retrieves the population of a country by country name.
-     *
      * @param countryName the name of the country.
      * @return the population of the specified country.
-     * @throws RemoteException if there is an issue with RMI.
      */
     long getPopulationOfCountry(String countryName) throws RemoteException;
 
     /**
      * Retrieves the number of cities in a country with a minimum population.
-     *
      * @param countryName   the name of the country.
      * @param minPopulation the minimum population required for a city to be counted.
      * @return the number of cities in the specified country.
-     * @throws RemoteException if there is an issue with RMI.
      */
     int getNumberOfCities(String countryName, int minPopulation) throws RemoteException;
 
     /**
      * Retrieves the number of countries that meet specific criteria: a minimum population and a minimum number of cities.
-     *
      * @param cityCount     the minimum number of cities required.
      * @param minPopulation the minimum population required for a country to be counted.
      * @return the number of countries that meet the criteria.
-     * @throws RemoteException if there is an issue with RMI.
      */
     int getNumberOfCountries(int cityCount, int minPopulation) throws RemoteException;
 
     /**
      * Retrieves the number of countries that meet criteria including a population range and a minimum number of cities.
-     *
      * @param cityCount     the minimum number of cities required.
      * @param minPopulation the minimum population required for a country to be counted.
      * @param maxPopulation the maximum population required for a country to be counted.
      * @return the number of countries that meet the criteria.
-     * @throws RemoteException if there is an issue with RMI.
      */
     int getNumberOfCountries(int cityCount, int minPopulation, int maxPopulation) throws RemoteException;
 
     /**
      * Retrieves server load information.
-     *
      * @return a ServerLoad object containing load and waiting list information.
-     * @throws RemoteException if there is an issue with RMI.
      */
     ServerLoad getServerLoadInfo() throws RemoteException;
 }
