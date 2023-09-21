@@ -2,7 +2,7 @@ package com.java_rmi.client;
 
 import com.java_rmi.load_balancer.LoadBalancerInterface;
 import com.java_rmi.server.ServerAllocation;
-import com.java_rmi.server.ServerImplement;
+import com.java_rmi.server.ServerImplementation;
 import com.java_rmi.server.ServerInterface;
 
 import java.io.BufferedReader;
@@ -141,7 +141,7 @@ public class Client {
                     } else {
                         // Make a remote method call to the LoadBalancer to get server assignment
                         ServerAllocation serverAllocation = loadBalancer.requestServerAllocation(zone);
-                        ServerImplement server = new ServerImplement();
+                        ServerImplementation server = new ServerImplementation();
 
                         long result1 = callServerMethod(server, methodName, argsArray);
 
