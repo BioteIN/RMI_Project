@@ -1,9 +1,9 @@
 package com.java_rmi.load_balancer;
 
-import com.java_rmi.server.ServerAssignment;
-import com.java_rmi.server.ServerInfo;
+import com.java_rmi.server.ServerAllocation;
+import com.java_rmi.server.Server;
 import com.java_rmi.server.ServerInterface;
-import com.java_rmi.server.ServerLoadInfo;
+import com.java_rmi.server.ServerLoad;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -12,92 +12,88 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
 public class LoadBalancerServer extends UnicastRemoteObject implements LoadBalancerInterface {
-    private List<ServerInfo> servers;
-    private Map<String, Integer> serverRequestCounts; // To keep track of server request counts
+    private List<Server> servers;
+    private Map<String, Integer> serverRequest; // To keep track of server request counts
 
-    public LoadBalancerServer(List<ServerInfo> servers) throws RemoteException {
+    public LoadBalancerServer(List<Server> servers) throws RemoteException {
         super();
         this.servers = servers;
-        this.serverRequestCounts = new HashMap<>();
-        for (ServerInfo server : servers) {
-            serverRequestCounts.put(server.getServerName(), 0);
+        this.serverRequest = new HashMap<>();
+        for (Server server : servers) {
+            serverRequest.put(server.getServerName(), 0);
         }
     }
 
     @Override
-    public ServerAssignment requestServerAssignment(int clientZone) throws RemoteException {
+    public ServerAllocation requestServerAllocation(int zone) throws RemoteException {
         // Implement the server assignment logic based on the rules you provided
-        ServerInfo selectedServer = selectServer(clientZone);
-
+        Server selectedServer = selectServer(zone);
         // Increment the request count for the selected server
-        incrementRequestCount(selectedServer.getServerName());
+        increaseRequest(selectedServer.getServerName());
 
-        return new ServerAssignment(selectedServer.getServerName(), selectedServer.getServerPort());
+        return new ServerAllocation(selectedServer.getServerName(), selectedServer.getServerPort());
     }
 
     @Override
-    public void updateServerLoad(String serverName, int load, int waitingListSize) throws RemoteException {
+    public void updateServerLoad(String serverName, int load, int waitingList) throws RemoteException {
         // Update the load information of the specified server
-        for (ServerInfo server : servers) {
+        for (Server server : servers) {
             if (server.getServerName().equals(serverName)) {
                 server.setLoad(load);
-                server.setWaitingListSize(waitingListSize);
-
+                server.setWaitingList(waitingList);
                 // Fetch updated load information from the server
                 ServerInterface serverStub = getServerStub(server);
                 if (serverStub != null) {
-                    ServerLoadInfo serverLoadInfo = serverStub.getServerLoadInfo();
-                    server.setLoad(serverLoadInfo.getLoad());
-                    server.setWaitingListSize(serverLoadInfo.getWaitingListSize());
+                    ServerLoad serverLoad = serverStub.getServerLoadInfo();
+                    server.setLoad(serverLoad.getLoad());
+                    server.setWaitingList(serverLoad.getWaitingList());
                 }
-
                 break;
             }
         }
     }
 
-    private ServerInfo selectServer(int clientZone) {
+    private Server selectServer(int zone) {
         // Implement your server selection logic based on the provided rules
-        List<ServerInfo> availableServersInZone = new ArrayList<>();
-        List<ServerInfo> availableServersInNeighborZone = new ArrayList<>();
+        List<Server> availableZoneServers = new ArrayList<>();
+        List<Server> availableNeighborZoneServers = new ArrayList<>();
 
         // Find available servers in the same zone and neighboring zones
-        for (ServerInfo server : servers) {
-            if (server.getZone() == clientZone && server.getLoad() < 18) {
-                availableServersInZone.add(server);
-            } else if (isNeighborZone(server.getZone(), clientZone) && server.getLoad() < 8) {
-                availableServersInNeighborZone.add(server);
+        for (Server server : servers) {
+            if (server.getZone() == zone && server.getLoad() < 18) {
+                availableZoneServers.add(server);
+            } else if (nearbyZone(server.getZone(), zone) && server.getLoad() < 8) {
+                availableNeighborZoneServers.add(server);
             }
         }
-
         // Priority: Same zone servers > Neighbor zone servers > Random server in same zone
-        if (!availableServersInZone.isEmpty()) {
-            return getRandomServer(availableServersInZone);
-        } else if (!availableServersInNeighborZone.isEmpty()) {
-            return getRandomServer(availableServersInNeighborZone);
+        if (!availableZoneServers.isEmpty()) {
+            return getRandomServer(availableZoneServers);
+        } else if (!availableNeighborZoneServers.isEmpty()) {
+            return getRandomServer(availableNeighborZoneServers);
         } else {
             // If no available servers, select a random server in the same zone
-            List<ServerInfo> serversInClientZone = getServersInZone(clientZone);
-            return getRandomServer(serversInClientZone);
+            List<Server> serversZone = getServersZone(zone);
+            return getRandomServer(serversZone);
         }
     }
 
-    private boolean isNeighborZone(int serverZone, int clientZone) {
+    private boolean nearbyZone(int serverZone, int zone) {
         // Determine if the server's zone is a neighbor of the client's zone
-        return Math.abs(serverZone - clientZone) <= 2;
+        return Math.abs(serverZone - zone) <= 2;
     }
 
-    private List<ServerInfo> getServersInZone(int zone) {
-        List<ServerInfo> serversInZone = new ArrayList<>();
-        for (ServerInfo server : servers) {
+    private List<Server> getServersZone(int zone) {
+        List<Server> serversZone = new ArrayList<>();
+        for (Server server : servers) {
             if (server.getZone() == zone) {
-                serversInZone.add(server);
+                serversZone.add(server);
             }
         }
-        return serversInZone;
+        return serversZone;
     }
 
-    private ServerInfo getRandomServer(List<ServerInfo> servers) {
+    private Server getRandomServer(List<Server> servers) {
         if (!servers.isEmpty()) {
             Random random = new Random();
             int randomIndex = random.nextInt(servers.size());
@@ -106,24 +102,24 @@ public class LoadBalancerServer extends UnicastRemoteObject implements LoadBalan
         return null;
     }
 
-    private void incrementRequestCount(String serverName) {
-        int count = serverRequestCounts.get(serverName) + 1;
-        serverRequestCounts.put(serverName, count);
-
+    private void increaseRequest(String serverName) {
+        int count = serverRequest.get(serverName) + 1;
+        serverRequest.put(serverName, count);
         // After every 18 requests, update the server load
         if (count % 18 == 0) {
-            for (ServerInfo server : servers) {
+            for (Server server : servers) {
                 if (server.getServerName().equals(serverName)) {
                     try {
                         // Invoke a remote call to the server to fetch updated load information
                         ServerInterface serverStub = getServerStub(server);
                         if (serverStub != null) {
-                            ServerLoadInfo serverLoadInfo = serverStub.getServerLoadInfo();
-                            server.setLoad(serverLoadInfo.getLoad());
-                            server.setWaitingListSize(serverLoadInfo.getWaitingListSize());
+                            ServerLoad serverLoad = serverStub.getServerLoadInfo();
+                            server.setLoad(serverLoad.getLoad());
+                            server.setWaitingList(serverLoad.getWaitingList());
                         }
                     } catch (RemoteException e) {
                         e.printStackTrace();
+                        System.out.println("Request count error!!!");
                     }
                     break;
                 }
@@ -131,12 +127,12 @@ public class LoadBalancerServer extends UnicastRemoteObject implements LoadBalan
         }
     }
 
-    private ServerInterface getServerStub(ServerInfo server) {
+    private ServerInterface getServerStub(Server server) {
         try {
             Registry registry = LocateRegistry.getRegistry(server.getServerPort());
             return (ServerInterface) registry.lookup(server.getServerName());
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error when getting Server Stub");
             return null;
         }
     }

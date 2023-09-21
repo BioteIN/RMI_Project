@@ -2,22 +2,20 @@ package com.java_rmi.server;
 
 import java.io.Serializable;
 
-public class ServerInfo implements Serializable {
+public class Server implements Serializable {
     private String serverName;
     private int zone;
     private int serverPort;
     private int load;
-    private int waitingListSize;
+    private int waitingList;
 
-    public ServerInfo(String serverName, int zone, int serverPort) {
+    public Server(String serverName, int zone, int serverPort) {
         this.serverName = serverName;
         this.zone = zone;
         this.serverPort = serverPort;
-        this.load = 0; // Initialize load to 0
-        this.waitingListSize = 0; // Initialize waiting list size to 0
+        this.load = 0;
+        this.waitingList = 0;
     }
-
-    // Getter and Setter methods
 
     public String getServerName() {
         return serverName;
@@ -51,13 +49,12 @@ public class ServerInfo implements Serializable {
         this.load = load;
     }
 
-    public int getWaitingListSize() {
-        return waitingListSize;
+    public int getWaitingList() {
+        return waitingList;
     }
 
-    public void setWaitingListSize(int waitingListSize) {
-        this.waitingListSize = waitingListSize;
+    public void setWaitingList(int waitingList) {
+        this.waitingList = waitingList;
     }
 
-    // You can add additional methods and fields as needed
 }
