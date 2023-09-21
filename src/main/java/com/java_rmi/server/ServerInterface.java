@@ -12,6 +12,5 @@ public interface ServerInterface extends Remote {
 
     int getNumberOfCountries(int cityCount, int minPopulation, int maxPopulation) throws RemoteException;
 
-    // New method to fetch server's load information
-    ServerLoadInfo getServerLoadInfo() throws RemoteException;
+    ServerLoad getServerLoadInfo() throws RemoteException;
 }

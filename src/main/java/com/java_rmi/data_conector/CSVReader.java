@@ -43,7 +43,7 @@ public class CSVReader {
 
             csvParser.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error reading data from CSV!!!");
         }
 
         return allData;
