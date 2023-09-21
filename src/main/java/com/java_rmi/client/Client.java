@@ -62,7 +62,6 @@ public class Client {
                 String[] parts = line.split(" ");
                 if (parts.length >= 2) {
                     String methodName = parts[0];
-
                     String[] argsArray = new String[parts.length - 2];
                     System.arraycopy(parts, 1, argsArray, 0, parts.length - 2);
                     int zone = Integer.parseInt(parts[parts.length - 1].substring(5));
