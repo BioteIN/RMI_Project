@@ -1,5 +1,10 @@
 package com.java_rmi.data_conector;
 
+/**
+ * The GeoData class represents geographical data for a location.
+ * It includes information such as geoname ID, name, country code, country name (in English),
+ * population, timezone, and coordinates.
+ */
 public class GeoData {
     private String geonameID;
     private String name;
@@ -9,9 +14,24 @@ public class GeoData {
     private String timezone;
     private String coordinates;
 
+    /**
+     * Default constructor for the GeoData class.
+     * Initializes all fields to default values (null or 0).
+     */
     public GeoData() {
     }
 
+    /**
+     * Constructor for the GeoData class with parameters.
+     *
+     * @param geonameID     The unique identifier for the location.
+     * @param name          The name of the location.
+     * @param countryCode   The country code for the location.
+     * @param countryNameEn The country name in English.
+     * @param population    The population of the location.
+     * @param timezone      The timezone of the location.
+     * @param coordinates   The coordinates of the location (e.g., latitude and longitude).
+     */
     public GeoData(String geonameID, String name, String countryCode, String countryNameEn,
                    long population, String timezone, String coordinates) {
         this.geonameID = geonameID;

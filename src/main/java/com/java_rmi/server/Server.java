@@ -2,6 +2,10 @@ package com.java_rmi.server;
 
 import java.io.Serializable;
 
+/**
+ * The Server class represents contains information about the server.
+ * including its name, zone, port, load, and waiting list status.
+ */
 public class Server implements Serializable {
     private String serverName;
     private int zone;
@@ -9,6 +13,12 @@ public class Server implements Serializable {
     private int load;
     private int waitingList;
 
+    /**
+     * Constructs a new Server object with the specified server name, zone, and server port.
+     * @param serverName The name of the server.
+     * @param zone       The zone in which the server is located.
+     * @param serverPort The port on which the server is listening.
+     */
     public Server(String serverName, int zone, int serverPort) {
         this.serverName = serverName;
         this.zone = zone;
@@ -56,5 +66,4 @@ public class Server implements Serializable {
     public void setWaitingList(int waitingList) {
         this.waitingList = waitingList;
     }
-
 }
