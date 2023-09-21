@@ -182,6 +182,10 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerI
                     // Rebind the LoadBalancerServer to the RMI registry with the name "LoadBalancer"
                     registry.rebind("LoadBalancer", loadBalancer);
 
+                    for(Server server1: servers){
+                        System.out.println("Server name: "+server1.getServerName()+", Zone: "+server1.getZone()+", Port: "+server1.getServerPort());
+                    }
+                    System.out.println();
                     System.out.println("Successfully created servers using LoadBalancer");
                 } catch (Exception e) {
                     System.out.println("Error creating servers!!!");
