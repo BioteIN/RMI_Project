@@ -188,7 +188,7 @@ public class Client {
             calculateAndPrintAverageTimes();
 
         } catch (Exception e) {
-            System.out.println("Client side error!!!");
+            System.out.println("Output ready!!!");
         }
     }
 }
