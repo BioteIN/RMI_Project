@@ -1,15 +1,10 @@
 package com.java_rmi.server;
 
 import com.java_rmi.data_conector.GeoData;
-import com.java_rmi.load_balancer.LoadBalancerServer;
 
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import static com.java_rmi.data_conector.CSVReader.readDataCSV;
@@ -155,46 +150,4 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerI
         return new ServerLoad(load, waitingList);
     }
 
-    /**
-     * Main method for starting the RMI server and load balancer.
-     * @param args command-line arguments (not used).
-     */
-    public static void main(String[] args) {
-        try {
-            // Create a list of server information
-            List<Server> servers = new ArrayList<>();
-            servers.add(new Server("Server1", 1, 1098));
-            servers.add(new Server("Server2", 2, 1097));
-            servers.add(new Server("Server3", 3, 1096));
-            servers.add(new Server("Server4", 4, 1095));
-            servers.add(new Server("Server5", 5, 1094));
-
-            // Create an instance of the load balancer server with the list of servers
-            LoadBalancerServer loadBalancer = new LoadBalancerServer(servers);
-
-            // Start the load balancer server in a new thread
-            Thread loadBalancerThread = new Thread(() -> {
-                try {
-                    // Create the RMI registry for the LoadBalancerServer
-                    Registry registry = LocateRegistry.createRegistry(1099);
-                    ServerImplementation server = new ServerImplementation();
-                    registry.bind("LoadBalancer", server);
-                    // Rebind the LoadBalancerServer to the RMI registry with the name "LoadBalancer"
-                    registry.rebind("LoadBalancer", loadBalancer);
-
-                    for(Server server1: servers){
-                        System.out.println("Server name: "+server1.getServerName()+", Zone: "+server1.getZone()+", Port: "+server1.getServerPort());
-                    }
-                    System.out.println();
-                    System.out.println("Successfully created servers using LoadBalancer");
-                } catch (Exception e) {
-                    System.out.println("Error creating servers!!!");
-                }
-            });
-            loadBalancerThread.start();
-
-        } catch (Exception e) {
-            System.out.println("Some error when starting servers!!!");
-        }
-    }
 }

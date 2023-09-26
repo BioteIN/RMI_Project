@@ -1,10 +1,11 @@
 package com.java_rmi.client;
 
 import com.java_rmi.load_balancer.LoadBalancerInterface;
+import com.java_rmi.load_balancer.LoadBalancerServer;
 import com.java_rmi.server.ServerAllocation;
 import com.java_rmi.server.ServerImplementation;
-import com.java_rmi.server.ServerInterface;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -23,20 +24,23 @@ import java.util.Map;
 public class Client {
     // Client-side cache for method results
     private static Map<String, Long> clientCache;
+    private static Map<String, Long> serverCache;
     // Maximum cache size
     private static final int CLIENT_CACHE_LIMIT = 45;
+    private static final int SERVER_CACHE_LIMIT = 150;
     private static Map<String, Long> executionTimes;
 
     /**
      * Calls a remote method on a server and measures execution time.
-     * @param server     The remote server interface.
+     *
      * @param methodName The name of the method to invoke.
      * @return The result of the remote method call.
      */
-    private static long callServerMethod(ServerInterface server, String methodName, String[] args) {
+    private static long callServerMethod(String methodName, String[] args) {
         try {
             long startTime = System.currentTimeMillis();
             long result = 0;
+            ServerImplementation server = new ServerImplementation();
 
             // Call the appropriate server method based on the methodName and pass the arguments
             if (methodName.equals("getPopulationofCountry")) {
@@ -50,14 +54,14 @@ public class Client {
             } else if (methodName.equals("getNumberofCountries")) {
                 if (args.length == 2) {
                     result = server.getNumberOfCountries(
-                            server.getNumberOfCities(args[0], Integer.parseInt(args[1])),
-                            Integer.parseInt(args[1])
+                            server.getNumberOfCities(args[0], Integer.parseInt("0" + args[1])),
+                            Integer.parseInt("0" + args[1])
                     );
                 } else if (args.length == 3) {
                     result = server.getNumberOfCountries(
-                            server.getNumberOfCities(args[0], Integer.parseInt(args[1])),
-                            Integer.parseInt(args[1]),
-                            Integer.parseInt(args[2])
+                            server.getNumberOfCities(args[0], Integer.parseInt("0" + args[1])),
+                            Integer.parseInt("0" + args[1]),
+                            Integer.parseInt("0" + args[2])
                     );
                 }
             }
@@ -77,6 +81,7 @@ public class Client {
 
     /**
      * Calculates and prints average execution times for methods.
+     *
      * @throws IOException If an error occurs while writing to output files.
      */
     private static void calculateAndPrintAverageTimes() throws IOException {
@@ -99,11 +104,13 @@ public class Client {
         double avgTurnAroundTime = (double) allTurnAroundTime / executionTimes.size();
         double avgExecutionTime = (double) allExecutionTime / executionTimes.size();
 
-        System.out.println("Average turnaround time: " + avgTurnAroundTime + " ms "+"\nAverage execution time: " + avgExecutionTime + " ms");
+        System.out.println("Average turnaround time: " + avgTurnAroundTime + " ms " + "\nAverage execution time: " + avgExecutionTime + " ms");
     }
 
-    public static void main(String[] args) {
+    public void clientStarter(){
         try {
+            LoadBalancerServer loadBalancerServer = new LoadBalancerServer();
+            loadBalancerServer.loadBalancerStarter();
             // Initialize RMI registry connection to the LoadBalancer
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             LoadBalancerInterface loadBalancer = (LoadBalancerInterface) registry.lookup("LoadBalancer");
@@ -116,6 +123,16 @@ public class Client {
                     return size() > CLIENT_CACHE_LIMIT;
                 }
             };
+
+            // Initialize server cache
+            serverCache = new LinkedHashMap<>(SERVER_CACHE_LIMIT, 0.75f, true) {
+                @Override
+                protected boolean removeEldestEntry(Map.Entry eldest) {
+                    // Remove the least recently used entry when the cache size exceeds the limit
+                    return size() > SERVER_CACHE_LIMIT;
+                }
+            };
+
             // Initialize map to store execution times
             executionTimes = new LinkedHashMap<>();
 
@@ -128,13 +145,14 @@ public class Client {
 
             // Initialize FileReader and FileWriter
             BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-            FileWriter writer = new FileWriter(outputFile);
-
+            FileWriter clientCacheWriter = new FileWriter(outputFile);
             FileWriter naiveServerWriter = new FileWriter(naiveServerOutputFile);
             FileWriter serverCacheWriter = new FileWriter(serverCacheOutputFile);
 
             String selectedLine;
             long startTime = System.currentTimeMillis();
+
+            int cacheEnabler = Integer.parseInt("0" + JOptionPane.showInputDialog("1. Enable Client-Side Cache.\n2. Disable Client-Side Cache."));
 
             while ((selectedLine = reader.readLine()) != null) {
                 // Parse each line of the input file
@@ -147,41 +165,81 @@ public class Client {
 
                     String cacheKey = methodName + String.join(":", argsArray);
 
-                    if (clientCache.containsKey(cacheKey)) {
-                        ServerAllocation serverAllocation = loadBalancer.requestServerAllocation(zone);
+                    ServerAllocation serverAllocation = loadBalancer.requestServerAllocation(zone);
 
-                        long cachedResult1 = clientCache.get(cacheKey);
-                        String resultTime1 = " (cached)";
-                        String outputSelectedLine = cachedResult1 + " " + selectedLine + " " + resultTime1 + ", processed by Server " + serverAllocation.getServerName() + ")\n";
-                        writer.write(outputSelectedLine);
-                    } else {
-                        // Make a remote method call to the LoadBalancer to get server assignment
-                        ServerAllocation serverAllocation = loadBalancer.requestServerAllocation(zone);
-                        ServerImplementation server = new ServerImplementation();
 
-                        long result1 = callServerMethod(server, methodName, argsArray);
+                    if (cacheEnabler == 1) {
+                        if (clientCache.containsKey(cacheKey)) {
 
-                        long endTime = System.currentTimeMillis();
-                        long executionTime = endTime - startTime;
-                        long turnAroundTime = executionTime;
-                        long waitingTime = 0;
+                            long cachedResult1 = clientCache.get(cacheKey);
+                            String resultTime1 = " (data client cached)";
+                            String outputSelectedLine = cachedResult1 + " " + selectedLine + " " + resultTime1 + ", processed by Server " + serverAllocation.getServerName() + ")\n";
+                            clientCacheWriter.write(outputSelectedLine);
+                        } else {
+                            if (serverCache.containsKey(cacheKey)) {
+                                long cachedResult1 = serverCache.get(cacheKey);
+                                String resultTime1 = " (data server cached)";
+                                String outputSelectedLine = cachedResult1 + " " + selectedLine + " " + resultTime1 + ", processed by Server " + serverAllocation.getServerName() + ")\n";
+                                serverCacheWriter.write(outputSelectedLine);
+                                System.out.println("The server contains cache.");
+                            } else {
+                                // Make a remote method call to the LoadBalancer to get server assignment
 
-                        String resultTime1 = "turnaround time: " + turnAroundTime + " ms, execution time: " + executionTime + " ms, waiting time: " + waitingTime + " ms)";
+                                long result1 = callServerMethod(methodName, argsArray);
 
-                        String outputSelectedLine = result1 + " " + selectedLine + " " + resultTime1 + ", processed by Server " + serverAllocation.getServerName() + ")\n";
+                                long endTime = System.currentTimeMillis();
+                                long executionTime = endTime - startTime;
+                                long turnAroundTime = executionTime;
+                                long waitingTime = 0;
 
-                        // Write the output selectedLine to the file
-                        writer.write(outputSelectedLine);
-                        naiveServerWriter.write(outputSelectedLine);
-                        serverCacheWriter.write(outputSelectedLine);
+                                String resultTime1 = "turnaround time: " + turnAroundTime + " ms, execution time: " + executionTime + " ms, waiting time: " + waitingTime + " ms)";
 
-                        clientCache.put(cacheKey, result1);
+                                String outputSelectedLine = result1 + " " + selectedLine + " " + resultTime1 + ", processed by Server " + serverAllocation.getServerName() + ")\n";
+
+                                // Write the output selectedLine to the file
+                                clientCacheWriter.write(outputSelectedLine);
+                                naiveServerWriter.write(outputSelectedLine);
+
+                                clientCache.put(cacheKey, result1);
+                                serverCache.put(cacheKey, result1);
+
+                            }
+
+                        }
+                    } else if (cacheEnabler == 2) {
+                        if (serverCache.containsKey(cacheKey)) {
+
+                            long cachedResult1 = serverCache.get(cacheKey);
+                            String resultTime1 = " (data server cached)";
+                            String outputSelectedLine = cachedResult1 + " " + selectedLine + " " + resultTime1 + ", processed by Server " + serverAllocation.getServerName() + ")\n";
+                            serverCacheWriter.write(outputSelectedLine);
+                            System.out.println("The server contains cache.");
+                        } else {
+                            //                        Make a remote method call to the LoadBalancer to get server assignment
+
+                            long result1 = callServerMethod(methodName, argsArray);
+
+                            long endTime = System.currentTimeMillis();
+                            long executionTime = endTime - startTime;
+                            long turnAroundTime = executionTime;
+                            long waitingTime = 0;
+
+                            String resultTime1 = "turnaround time: " + turnAroundTime + " ms, execution time: " + executionTime + " ms, waiting time: " + waitingTime + " ms)";
+
+                            String outputSelectedLine = result1 + " " + selectedLine + " " + resultTime1 + ", processed by Server " + serverAllocation.getServerName() + ")\n";
+
+                            naiveServerWriter.write(outputSelectedLine);
+                            serverCache.put(cacheKey, result1);
+                        }
+
                     }
+
+
                 }
             }
             // Close the reader and writer
             reader.close();
-            writer.close();
+            clientCacheWriter.close();
             naiveServerWriter.close();
             serverCacheWriter.close();
 
@@ -191,4 +249,5 @@ public class Client {
             System.out.println("Output ready!!!");
         }
     }
+
 }

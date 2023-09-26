@@ -1,9 +1,6 @@
 package com.java_rmi.load_balancer;
 
-import com.java_rmi.server.ServerAllocation;
-import com.java_rmi.server.Server;
-import com.java_rmi.server.ServerInterface;
-import com.java_rmi.server.ServerLoad;
+import com.java_rmi.server.*;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -34,6 +31,10 @@ public class LoadBalancerServer extends UnicastRemoteObject implements LoadBalan
             serverRequest.put(server.getServerName(), 0);
         }
     }
+    public LoadBalancerServer() throws RemoteException {
+
+
+    }
 
     /**
      * Implements the server allocation logic based on specific rules and selects an appropriate server to
@@ -49,33 +50,6 @@ public class LoadBalancerServer extends UnicastRemoteObject implements LoadBalan
         increaseRequest(selectedServer.getServerName());
 
         return new ServerAllocation(selectedServer.getServerName(), selectedServer.getServerPort());
-    }
-
-    /**
-     * Updates the load information of a specified server and fetches the updated load information from
-     * the server itself.
-     * @param serverName   The name of the server whose load information is being updated.
-     * @param load         The new load value for the server.
-     * @param waitingList  The new waiting list value for the server.
-     */
-    @Override
-    public void updateServerLoad(String serverName, int load, int waitingList) throws RemoteException {
-        // Update the load information of the specified server
-        for (Server server : servers) {
-            if (server.getServerName().equals(serverName)) {
-                server.setLoad(load);
-                server.setWaitingList(waitingList);
-
-                // Fetch updated load information from the server
-                ServerInterface serverStub = getServerStub(server);
-                if (serverStub != null) {
-                    ServerLoad serverLoad = serverStub.getServerLoadInfo();
-                    server.setLoad(serverLoad.getLoad());
-                    server.setWaitingList(serverLoad.getWaitingList());
-                }
-                break;
-            }
-        }
     }
 
     /**
@@ -151,6 +125,10 @@ public class LoadBalancerServer extends UnicastRemoteObject implements LoadBalan
      * After every 18 requests, update the server load
      * @param serverName The name of the server.
      */
+    /** If the server in that specific zone is overloaded with client requests
+       (equal or more than 18 requests in the waiting list), the load balancing server tries servers in
+       the next two zones (if server in zone 1 is overloaded, then load balancer will try servers in zone
+       2 and zone 3) to find a server with less than 8 requests in the waiting list.*/
     private void increaseRequest(String serverName) {
         int count = serverRequest.get(serverName) + 1;
         serverRequest.put(serverName, count);
@@ -185,8 +163,46 @@ public class LoadBalancerServer extends UnicastRemoteObject implements LoadBalan
             Registry registry = LocateRegistry.getRegistry(server.getServerPort());
             return (ServerInterface) registry.lookup(server.getServerName());
         } catch (Exception e) {
-            System.out.println("Error when getting Server Stub");
             return null;
         }
     }
+
+    public void loadBalancerStarter(){
+        try {
+            // Create a list of server information
+            List<Server> servers = new ArrayList<>();
+            servers.add(new Server("Server1", 1, 1098));
+            servers.add(new Server("Server2", 2, 1097));
+            servers.add(new Server("Server3", 3, 1096));
+            servers.add(new Server("Server4", 4, 1095));
+            servers.add(new Server("Server5", 5, 1094));
+
+            // Create an instance of the load balancer server with the list of servers
+            LoadBalancerServer loadBalancer = new LoadBalancerServer(servers);
+
+            // Start the load balancer server in a new thread
+            Thread loadBalancerThread = new Thread(() -> {
+                try {
+                    // Create the RMI registry for the LoadBalancerServer
+                    Registry registry = LocateRegistry.createRegistry(1099);
+                    // Bind the LoadBalancerServer to the RMI registry with the name "LoadBalancer"
+                    registry.bind("LoadBalancer", loadBalancer);
+
+                    for(Server server1: servers){
+                        System.out.println("Server name: "+server1.getServerName()+", Zone: "+server1.getZone()+", Port: "+server1.getServerPort());
+                    }
+                    System.out.println();
+                    System.out.println("Successfully created servers using LoadBalancer");
+                } catch (Exception e) {
+                    System.out.println("Error creating servers, due to servers started!!!");
+                }
+            });
+            loadBalancerThread.start();
+
+        } catch (Exception e) {
+            System.out.println("Some error when starting servers!!!");
+        }
+    }
+
+
 }

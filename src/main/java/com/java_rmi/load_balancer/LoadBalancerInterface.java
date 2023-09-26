@@ -18,13 +18,5 @@ public interface LoadBalancerInterface extends Remote {
      */
     ServerAllocation requestServerAllocation(int clientZone) throws RemoteException;
 
-    /**
-     * Updates the load information of a specific server.
-     * @param serverName   The name of the server to update.
-     * @param load         The new load value for the server.
-     * @param waitingList  The new waiting list value for the server.
-     * @throws RemoteException If there is an issue with RMI communication.
-     */
-    void updateServerLoad(String serverName, int load, int waitingList) throws RemoteException;
 }
 
