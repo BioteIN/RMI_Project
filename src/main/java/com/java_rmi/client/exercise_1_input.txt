@@ -1,8 +1,8 @@
-getPopulationofCountry French Guiana Zone:4
+getPopulationofCountry FrenchGuiana Zone:4
 getPopulationofCountry Seychelles Zone:1
 getPopulationofCountry Canada Zone:1
-getPopulationofCountry Equatorial Guinea Zone:2
-getPopulationofCountry Equatorial Guinea Zone:2
+getPopulationofCountry EquatorialGuinea Zone:2
+getPopulationofCountry EquatorialGuinea Zone:2
 getPopulationofCountry Tokelau Zone:4
 getPopulationofCountry Swaziland Zone:1
 getPopulationofCountry Swaziland Zone:1
@@ -75,8 +75,8 @@ getPopulationofCountry Peru Zone:1
 getPopulationofCountry Peru Zone:1
 getPopulationofCountry Peru Zone:1
 getPopulationofCountry Tokelau Zone:3
-getPopulationofCountry French Guiana Zone:3
-getPopulationofCountry United States Zone:1
+getPopulationofCountry FrenchGuiana Zone:3
+getPopulationofCountry UnitedStates Zone:1
 getPopulationofCountry Pakistan Zone:1
 getPopulationofCountry Pakistan Zone:1
 getPopulationofCountry Togo Zone:4
@@ -115,8 +115,8 @@ getPopulationofCountry Suriname Zone:4
 getPopulationofCountry Guatemala Zone:1
 getPopulationofCountry Kenya Zone:3
 getPopulationofCountry Israel Zone:5
-getPopulationofCountry French Guiana Zone:3
-getPopulationofCountry French Guiana Zone:3
+getPopulationofCountry FrenchGuiana Zone:3
+getPopulationofCountry FrenchGuiana Zone:3
 getPopulationofCountry Guyana Zone:3
 getPopulationofCountry Senegal Zone:1
 getPopulationofCountry Senegal Zone:1
@@ -126,7 +126,7 @@ getPopulationofCountry Mexico Zone:5
 getPopulationofCountry Mexico Zone:5
 getPopulationofCountry Sweden Zone:2
 getPopulationofCountry Uganda Zone:4
-getPopulationofCountry United States Zone:4
+getPopulationofCountry UnitedStates Zone:4
 getPopulationofCountry Slovenia Zone:4
 getPopulationofCountry Slovenia Zone:4
 getPopulationofCountry Slovenia Zone:4
@@ -165,20 +165,20 @@ getPopulationofCountry Belgium Zone:2
 getPopulationofCountry Serbia Zone:5
 getPopulationofCountry Philippines Zone:1
 getPopulationofCountry Bolivia Zone:1
-getPopulationofCountry Equatorial Guinea Zone:4
-getPopulationofCountry Equatorial Guinea Zone:4
-getPopulationofCountry Equatorial Guinea Zone:4
-getPopulationofCountry Equatorial Guinea Zone:4
+getPopulationofCountry EquatorialGuinea Zone:4
+getPopulationofCountry EquatorialGuinea Zone:4
+getPopulationofCountry EquatorialGuinea Zone:4
+getPopulationofCountry EquatorialGuinea Zone:4
 getPopulationofCountry Sweden Zone:4
-getPopulationofCountry United Kingdom Zone:3
+getPopulationofCountry UnitedKingdom Zone:3
 getPopulationofCountry Nepal Zone:3
-getPopulationofCountry Equatorial Guinea Zone:5
-getPopulationofCountry Equatorial Guinea Zone:5
+getPopulationofCountry EquatorialGuinea Zone:5
+getPopulationofCountry EquatorialGuinea Zone:5
 getPopulationofCountry Honduras Zone:3
 getPopulationofCountry Belarus Zone:4
 getPopulationofCountry Belarus Zone:4
 getPopulationofCountry Belarus Zone:4
-getPopulationofCountry United States Zone:5
+getPopulationofCountry UnitedStates Zone:5
 getPopulationofCountry Netherlands Zone:4
 getPopulationofCountry Netherlands Zone:4
 getPopulationofCountry Togo Zone:1
@@ -228,16 +228,16 @@ getPopulationofCountry Swaziland Zone:1
 getPopulationofCountry Swaziland Zone:1
 getPopulationofCountry  Zone:3
 getPopulationofCountry China Zone:3
-getPopulationofCountry Equatorial Guinea Zone:5
+getPopulationofCountry EquatorialGuinea Zone:5
 getPopulationofCountry Slovenia Zone:5
 getPopulationofCountry Slovenia Zone:5
 getPopulationofCountry Portugal Zone:4
-getPopulationofCountry United States Zone:4
-getPopulationofCountry United States Zone:4
-getPopulationofCountry United States Zone:4
+getPopulationofCountry UnitedStates Zone:4
+getPopulationofCountry UnitedStates Zone:4
+getPopulationofCountry UnitedStates Zone:4
 getPopulationofCountry Romania Zone:3
-getPopulationofCountry French Guiana Zone:2
-getPopulationofCountry French Guiana Zone:2
+getPopulationofCountry FrenchGuiana Zone:2
+getPopulationofCountry FrenchGuiana Zone:2
 getPopulationofCountry Gambia Zone:4
 getPopulationofCountry Ghana Zone:1
 getPopulationofCountry Togo Zone:2
@@ -288,7 +288,7 @@ getPopulationofCountry Cameroon Zone:4
 getPopulationofCountry Switzerland Zone:1
 getPopulationofCountry Tajikistan Zone:5
 getPopulationofCountry Tajikistan Zone:5
-getPopulationofCountry United States Zone:1
+getPopulationofCountry UnitedStates Zone:1
 getPopulationofCountry Belgium Zone:3
 getPopulationofCountry Belgium Zone:3
 getPopulationofCountry Belgium Zone:3
@@ -317,10 +317,10 @@ getPopulationofCountry Kenya Zone:1
 getPopulationofCountry Tokelau Zone:2
 getPopulationofCountry Swaziland Zone:1
 getPopulationofCountry Kazakhstan Zone:2
-getPopulationofCountry United Kingdom Zone:2
-getPopulationofCountry United Kingdom Zone:2
-getPopulationofCountry United Kingdom Zone:2
-getPopulationofCountry United Kingdom Zone:2
+getPopulationofCountry UnitedKingdom Zone:2
+getPopulationofCountry UnitedKingdom Zone:2
+getPopulationofCountry UnitedKingdom Zone:2
+getPopulationofCountry UnitedKingdom Zone:2
 getPopulationofCountry Guatemala Zone:2
 getPopulationofCountry Honduras Zone:2
 getPopulationofCountry Togo Zone:5
@@ -335,7 +335,7 @@ getPopulationofCountry Brazil Zone:3
 getPopulationofCountry Brazil Zone:3
 getPopulationofCountry Romania Zone:4
 getPopulationofCountry Belgium Zone:5
-getPopulationofCountry French Guiana Zone:5
+getPopulationofCountry FrenchGuiana Zone:5
 getPopulationofCountry Cambodia Zone:3
 getPopulationofCountry Cambodia Zone:3
 getPopulationofCountry Cambodia Zone:3
@@ -345,7 +345,7 @@ getPopulationofCountry Ireland Zone:2
 getPopulationofCountry Guyana Zone:1
 getPopulationofCountry Tonga Zone:5
 getPopulationofCountry Tonga Zone:5
-getPopulationofCountry Equatorial Guinea Zone:5
+getPopulationofCountry EquatorialGuinea Zone:5
 getPopulationofCountry Romania Zone:5
 getPopulationofCountry Romania Zone:5
 getPopulationofCountry Romania Zone:5
@@ -399,7 +399,7 @@ getPopulationofCountry Guinea Zone:2
 getPopulationofCountry Guinea Zone:2
 getPopulationofCountry Turkey Zone:4
 getPopulationofCountry Romania Zone:1
-getPopulationofCountry  Zone:5
+getPopulationofCountry Romania Zone:5
 getPopulationofCountry Kenya Zone:5
 getPopulationofCountry Kenya Zone:5
 getPopulationofCountry Philippines Zone:1
@@ -437,7 +437,7 @@ getPopulationofCountry Canada Zone:3
 getPopulationofCountry Canada Zone:3
 getPopulationofCountry Kuwait Zone:5
 getPopulationofCountry Japan Zone:2
-getPopulationofCountry Equatorial Guinea Zone:5
+getPopulationofCountry EquatorialGuinea Zone:5
 getPopulationofCountry Paraguay Zone:5
 getPopulationofCountry Paraguay Zone:5
 getPopulationofCountry Georgia Zone:1
@@ -460,9 +460,9 @@ getPopulationofCountry Poland Zone:4
 getPopulationofCountry Serbia Zone:5
 getPopulationofCountry Serbia Zone:5
 getPopulationofCountry Gambia Zone:3
-getPopulationofCountry United States Zone:1
-getPopulationofCountry United States Zone:1
-getPopulationofCountry United States Zone:1
+getPopulationofCountry UnitedStates Zone:1
+getPopulationofCountry UnitedStates Zone:1
+getPopulationofCountry UnitedStates Zone:1
 getPopulationofCountry Gambia Zone:3
 getPopulationofCountry Ukraine Zone:3
 getPopulationofCountry Ukraine Zone:3
@@ -476,8 +476,8 @@ getPopulationofCountry Sweden Zone:5
 getPopulationofCountry Panama Zone:2
 getPopulationofCountry Pakistan Zone:5
 getPopulationofCountry Guadeloupe Zone:2
-getPopulationofCountry United States Zone:1
-getPopulationofCountry United States Zone:1
+getPopulationofCountry UnitedStates Zone:1
+getPopulationofCountry UnitedStates Zone:1
 getPopulationofCountry Indonesia Zone:2
 getPopulationofCountry Kenya Zone:1
 getPopulationofCountry Kenya Zone:1
@@ -506,7 +506,7 @@ getPopulationofCountry Israel Zone:3
 getPopulationofCountry Israel Zone:3
 getPopulationofCountry Guatemala Zone:5
 getPopulationofCountry Israel Zone:2
-getPopulationofCountry French Guiana Zone:4
+getPopulationofCountry FrenchGuiana Zone:4
 getPopulationofCountry Guam Zone:1
 getPopulationofCountry Guam Zone:1
 getPopulationofCountry Guam Zone:1
@@ -550,7 +550,7 @@ getPopulationofCountry Israel Zone:2
 getPopulationofCountry Israel Zone:2
 getPopulationofCountry Israel Zone:2
 getPopulationofCountry Philippines Zone:2
-getPopulationofCountry United States Zone:5
+getPopulationofCountry UnitedStates Zone:5
 getPopulationofCountry Bahamas Zone:1
 getPopulationofCountry Slovakia Zone:5
 getPopulationofCountry Slovakia Zone:5
@@ -583,10 +583,10 @@ getPopulationofCountry Philippines Zone:4
 getPopulationofCountry Guinea Zone:3
 getPopulationofCountry Georgia Zone:4
 getPopulationofCountry Japan Zone:1
-getPopulationofCountry French Guiana Zone:3
-getPopulationofCountry French Guiana Zone:3
-getPopulationofCountry French Guiana Zone:3
-getPopulationofCountry French Guiana Zone:3
+getPopulationofCountry FrenchGuiana Zone:3
+getPopulationofCountry FrenchGuiana Zone:3
+getPopulationofCountry FrenchGuiana Zone:3
+getPopulationofCountry FrenchGuiana Zone:3
 getPopulationofCountry Tajikistan Zone:2
 getPopulationofCountry Brazil Zone:3
 getPopulationofCountry Belarus Zone:1
@@ -697,10 +697,10 @@ getPopulationofCountry Japan Zone:4
 getPopulationofCountry Bahamas Zone:3
 getPopulationofCountry Tajikistan Zone:5
 getPopulationofCountry Honduras Zone:2
-getPopulationofCountry United States Zone:3
-getPopulationofCountry United States Zone:3
-getPopulationofCountry United States Zone:3
-getPopulationofCountry United States Zone:3
+getPopulationofCountry UnitedStates Zone:3
+getPopulationofCountry UnitedStates Zone:3
+getPopulationofCountry UnitedStates Zone:3
+getPopulationofCountry UnitedStates Zone:3
 getPopulationofCountry Senegal Zone:5
 getPopulationofCountry Togo Zone:5
 getPopulationofCountry Cambodia Zone:1
@@ -721,11 +721,11 @@ getPopulationofCountry Belgium Zone:1
 getPopulationofCountry Belgium Zone:1
 getPopulationofCountry Belgium Zone:1
 getPopulationofCountry Tonga Zone:3
-getPopulationofCountry United Kingdom Zone:1
+getPopulationofCountry UnitedKingdom Zone:1
 getPopulationofCountry Romania Zone:3
 getPopulationofCountry Serbia Zone:2
 getPopulationofCountry Serbia Zone:2
-getPopulationofCountry United Kingdom Zone:2
+getPopulationofCountry UnitedKingdom Zone:2
 getPopulationofCountry Cambodia Zone:4
 getPopulationofCountry Cambodia Zone:4
 getPopulationofCountry Cambodia Zone:4
@@ -740,7 +740,7 @@ getPopulationofCountry Pakistan Zone:3
 getPopulationofCountry Pakistan Zone:3
 getPopulationofCountry Pakistan Zone:3
 getPopulationofCountry China Zone:5
-getPopulationofCountry United Kingdom Zone:3
+getPopulationofCountry UnitedKingdom Zone:3
 getPopulationofCountry Pakistan Zone:5
 getPopulationofCountry Uganda Zone:4
 getPopulationofCountry Uganda Zone:4
@@ -815,7 +815,7 @@ getNumberofCities Panama 23578 Zone:3
 getNumberofCities Panama 23578 Zone:3
 getNumberofCities Panama 23578 Zone:3
 getNumberofCities Panama 23578 Zone:3
-getNumberofCities French Guiana 12927 Zone:3
+getNumberofCities FrenchGuiana 12927 Zone:3
 getNumberofCities Cambodia 50967 Zone:1
 getNumberofCities Kenya 33072 Zone:3
 getNumberofCities Kenya 40936 Zone:4
@@ -828,7 +828,7 @@ getNumberofCities Romania 13895 Zone:3
 getNumberofCities Nepal 83785 Zone:2
 getNumberofCities Nepal 83785 Zone:2
 getNumberofCities Tuvalu 27155 Zone:5
-getNumberofCities Equatorial Guinea 59582 Zone:5
+getNumberofCities EquatorialGuinea 59582 Zone:5
 getNumberofCities Kyrgyzstan 20947 Zone:1
 getNumberofCities Japan 94687 Zone:5
 getNumberofCities Japan 94687 Zone:5
@@ -866,7 +866,7 @@ getNumberofCities Hungary 25981 Zone:4
 getNumberofCities Peru 58890 Zone:2
 getNumberofCities Peru 58890 Zone:2
 getNumberofCities Israel 25629 Zone:3
-getNumberofCities Equatorial Guinea 42670 Zone:4
+getNumberofCities EquatorialGuinea 42670 Zone:4
 getNumberofCities Netherlands 88688 Zone:5
 getNumberofCities Canada 90020 Zone:3
 getNumberofCities Canada 90020 Zone:3
@@ -881,12 +881,12 @@ getNumberofCities Bahamas 72066 Zone:4
 getNumberofCities Togo 74465 Zone:5
 getNumberofCities Togo 74465 Zone:5
 getNumberofCities Togo 74465 Zone:5
-getNumberofCities United States 15534 Zone:2
+getNumberofCities UnitedStates 15534 Zone:2
 getNumberofCities Nepal 15947 Zone:1
 getNumberofCities Nepal 15947 Zone:1
 getNumberofCities  69308 Zone:3
 getNumberofCities Senegal 66335 Zone:2
-getNumberofCities French Guiana 52177 Zone:1
+getNumberofCities FrenchGuiana 52177 Zone:1
 getNumberofCities Serbia 19336 Zone:2
 getNumberofCities Serbia 19336 Zone:2
 getNumberofCities Serbia 19336 Zone:2
@@ -910,7 +910,7 @@ getNumberofCities China 19501 Zone:2
 getNumberofCities China 19501 Zone:2
 getNumberofCities China 19501 Zone:2
 getNumberofCities China 19501 Zone:2
-getNumberofCities United Kingdom 12116 Zone:3
+getNumberofCities UnitedKingdom 12116 Zone:3
 getNumberofCities Indonesia 86739 Zone:2
 getNumberofCities Ghana 27862 Zone:4
 getNumberofCities Panama 95856 Zone:2
@@ -920,8 +920,8 @@ getNumberofCities Peru 14436 Zone:1
 getNumberofCities Peru 14436 Zone:1
 getNumberofCities Peru 14436 Zone:1
 getNumberofCities Hungary 23445 Zone:1
-getNumberofCities United States 73738 Zone:1
-getNumberofCities United States 73738 Zone:1
+getNumberofCities UnitedStates 73738 Zone:1
+getNumberofCities UnitedStates 73738 Zone:1
 getNumberofCities Haiti 87680 Zone:1
 getNumberofCities Comoros 33744 Zone:1
 getNumberofCities Thailand 28171 Zone:4
@@ -943,7 +943,7 @@ getNumberofCities Slovakia 36068 Zone:4
 getNumberofCities Slovakia 36068 Zone:4
 getNumberofCities Chad 29400 Zone:3
 getNumberofCities Uganda 11116 Zone:5
-getNumberofCities French Guiana 46121 Zone:4
+getNumberofCities FrenchGuiana 46121 Zone:4
 getNumberofCities Ireland 93817 Zone:1
 getNumberofCities Ireland 93817 Zone:1
 getNumberofCities Ireland 93817 Zone:1
@@ -1000,7 +1000,7 @@ getNumberofCities Kyrgyzstan 50301 Zone:5
 getNumberofCities Kyrgyzstan 50301 Zone:5
 getNumberofCities Tajikistan 30501 Zone:3
 getNumberofCities Greenland 15400 Zone:3
-getNumberofCities French Guiana 15157 Zone:5
+getNumberofCities FrenchGuiana 15157 Zone:5
 getNumberofCities Bahamas 87092 Zone:3
 getNumberofCities Bahamas 87092 Zone:3
 getNumberofCities Bahamas 87092 Zone:3
@@ -1018,7 +1018,7 @@ getNumberofCities Guam 67884 Zone:2
 getNumberofCities Greenland 53657 Zone:5
 getNumberofCities Greenland 53657 Zone:5
 getNumberofCities Kyrgyzstan 22720 Zone:2
-getNumberofCities Equatorial Guinea 64619 Zone:1
+getNumberofCities EquatorialGuinea 64619 Zone:1
 getNumberofCities Georgia 30787 Zone:3
 getNumberofCities Ghana 92085 Zone:5
 getNumberofCities Ghana 92085 Zone:5
@@ -1056,21 +1056,21 @@ getNumberofCities Tuvalu 76203 Zone:3
 getNumberofCities Thailand 97272 Zone:1
 getNumberofCities Thailand 97272 Zone:1
 getNumberofCities Tunisia 92988 Zone:4
-getNumberofCities United Kingdom 49360 Zone:4
+getNumberofCities UnitedKingdom 49360 Zone:4
 getNumberofCities Indonesia 20930 Zone:2
 getNumberofCities Indonesia 53866 Zone:4
 getNumberofCities Indonesia 53866 Zone:4
 getNumberofCities Indonesia 53866 Zone:4
 getNumberofCities Indonesia 53866 Zone:4
-getNumberofCities United States 71364 Zone:5
+getNumberofCities UnitedStates 71364 Zone:5
 getNumberofCities Tajikistan 15839 Zone:3
 getNumberofCities Botswana 91744 Zone:5
 getNumberofCities Ireland 32021 Zone:1
 getNumberofCities Ireland 32021 Zone:1
 getNumberofCities Botswana 34043 Zone:1
-getNumberofCities United States 65253 Zone:2
-getNumberofCities United States 65253 Zone:2
-getNumberofCities United States 65253 Zone:2
+getNumberofCities UnitedStates 65253 Zone:2
+getNumberofCities UnitedStates 65253 Zone:2
+getNumberofCities UnitedStates 65253 Zone:2
 getNumberofCities Belgium 48563 Zone:2
 getNumberofCities Bahamas 18643 Zone:5
 getNumberofCities Bahamas 18643 Zone:5
@@ -1081,7 +1081,7 @@ getNumberofCities Ghana 24334 Zone:5
 getNumberofCities Ghana 24334 Zone:5
 getNumberofCities Ghana 24334 Zone:5
 getNumberofCities Ghana 24334 Zone:5
-getNumberofCities French Guiana 63161 Zone:5
+getNumberofCities FrenchGuiana 63161 Zone:5
 getNumberofCities Hungary 67043 Zone:5
 getNumberofCities Haiti 63347 Zone:2
 getNumberofCities Burundi 17254 Zone:2
@@ -1264,7 +1264,7 @@ getNumberofCities Ireland 11391 Zone:5
 getNumberofCities Serbia 10541 Zone:1
 getNumberofCities Slovenia 88661 Zone:5
 getNumberofCities Slovenia 88661 Zone:5
-getNumberofCities  72010 Zone:2
+getNumberofCities Slovenia 72010 Zone:2
 getNumberofCities Bahamas 82418 Zone:1
 getNumberofCities Serbia 72126 Zone:5
 getNumberofCities Serbia 70171 Zone:1
@@ -1285,7 +1285,7 @@ getNumberofCities Cambodia 47523 Zone:3
 getNumberofCities Cambodia 47523 Zone:3
 getNumberofCities Portugal 47942 Zone:1
 getNumberofCities Tonga 48031 Zone:4
-getNumberofCities French Guiana 86843 Zone:1
+getNumberofCities FrenchGuiana 86843 Zone:1
 getNumberofCities Ghana 82629 Zone:2
 getNumberofCities Ghana 82629 Zone:2
 getNumberofCities Ghana 82629 Zone:2
@@ -1299,7 +1299,7 @@ getNumberofCities Slovakia 47469 Zone:2
 getNumberofCities Ghana 48082 Zone:4
 getNumberofCities Ghana 48082 Zone:4
 getNumberofCities Ghana 48082 Zone:4
-getNumberofCities United States 35308 Zone:5
+getNumberofCities UnitedStates 35308 Zone:5
 getNumberofCities Serbia 43496 Zone:2
 getNumberofCities Serbia 43496 Zone:2
 getNumberofCities Israel 91120 Zone:4
@@ -1342,7 +1342,7 @@ getNumberofCities Brazil 37528 Zone:5
 getNumberofCities Brazil 37528 Zone:5
 getNumberofCities Tonga 22300 Zone:3
 getNumberofCities Paraguay 63508 Zone:5
-getNumberofCities  17765 Zone:5
+getNumberofCities Paraguay 17765 Zone:5
 getNumberofCities Sweden 40570 Zone:3
 getNumberofCities Sweden 40570 Zone:3
 getNumberofCities Sweden 40570 Zone:3
@@ -1353,9 +1353,9 @@ getNumberofCities Suriname 28681 Zone:3
 getNumberofCities Ireland 44834 Zone:4
 getNumberofCities Ireland 44834 Zone:4
 getNumberofCities Slovenia 98334 Zone:2
-getNumberofCities Equatorial Guinea 24778 Zone:3
-getNumberofCities Equatorial Guinea 24778 Zone:3
-getNumberofCities Equatorial Guinea 24778 Zone:3
+getNumberofCities EquatorialGuinea 24778 Zone:3
+getNumberofCities EquatorialGuinea 24778 Zone:3
+getNumberofCities EquatorialGuinea 24778 Zone:3
 getNumberofCities Belarus 92121 Zone:4
 getNumberofCities Tajikistan 89580 Zone:3
 getNumberofCities Tajikistan 89580 Zone:3
@@ -1368,10 +1368,10 @@ getNumberofCities Nepal 75326 Zone:5
 getNumberofCities Nepal 75326 Zone:5
 getNumberofCities Burundi 94392 Zone:4
 getNumberofCities Cambodia 76730 Zone:1
-getNumberofCities United States 77229 Zone:5
+getNumberofCities UnitedStates 77229 Zone:5
 getNumberofCities Tonga 89651 Zone:3
 getNumberofCities Tonga 89651 Zone:3
-getNumberofCities Equatorial Guinea 10963 Zone:4
+getNumberofCities EquatorialGuinea 10963 Zone:4
 getNumberofCities Slovenia 96355 Zone:1
 getNumberofCities Slovenia 96355 Zone:1
 getNumberofCities Slovenia 96355 Zone:1
@@ -1405,7 +1405,7 @@ getNumberofCities Suriname 90089 Zone:3
 getNumberofCities Suriname 90089 Zone:3
 getNumberofCities Suriname 90089 Zone:3
 getNumberofCities Senegal 56395 Zone:2
-getNumberofCities Equatorial Guinea 70608 Zone:3
+getNumberofCities EquatorialGuinea 70608 Zone:3
 getNumberofCities Greenland 47928 Zone:4
 getNumberofCities Senegal 15017 Zone:1
 getNumberofCities Senegal 15017 Zone:1
@@ -1424,7 +1424,7 @@ getNumberofCities Guadeloupe 40909 Zone:3
 getNumberofCities Guadeloupe 40909 Zone:3
 getNumberofCities Guadeloupe 40909 Zone:3
 getNumberofCities Thailand 30980 Zone:5
-getNumberofCities French Guiana 51406 Zone:2
+getNumberofCities FrenchGuiana 51406 Zone:2
 getNumberofCities Belgium 29297 Zone:2
 getNumberofCities Greenland 91455 Zone:5
 getNumberofCities Greenland 91455 Zone:5
@@ -1466,7 +1466,7 @@ getNumberofCities Switzerland 68069 Zone:3
 getNumberofCities Turkey 95563 Zone:3
 getNumberofCities Cameroon 18564 Zone:2
 getNumberofCities Cameroon 18564 Zone:2
-getNumberofCities Equatorial Guinea 51262 Zone:5
+getNumberofCities EquatorialGuinea 51262 Zone:5
 getNumberofCities Cambodia 22438 Zone:5
 getNumberofCities Cambodia 22438 Zone:5
 getNumberofCities Cambodia 22438 Zone:5
@@ -1483,8 +1483,8 @@ getNumberofCities Oman 91646 Zone:1
 getNumberofCities Honduras 25700 Zone:5
 getNumberofCities Cameroon 48570 Zone:5
 getNumberofCities Belarus 68667 Zone:3
-getNumberofCities United States 94613 Zone:5
-getNumberofCities United States 94613 Zone:5
+getNumberofCities UnitedStates 94613 Zone:5
+getNumberofCities UnitedStates 94613 Zone:5
 getNumberofCities Tuvalu 85594 Zone:4
 getNumberofCities Croatia 97698 Zone:1
 getNumberofCities Croatia 97698 Zone:1
@@ -1502,8 +1502,8 @@ getNumberofCities Guyana 26219 Zone:1
 getNumberofCities Georgia 81993 Zone:1
 getNumberofCities Bolivia 20797 Zone:2
 getNumberofCities Palau 66143 Zone:3
-getNumberofCities Equatorial Guinea 11947 Zone:5
-getNumberofCities Equatorial Guinea 11947 Zone:5
+getNumberofCities EquatorialGuinea 11947 Zone:5
+getNumberofCities EquatorialGuinea 11947 Zone:5
 getNumberofCities Tuvalu 69906 Zone:5
 getNumberofCities Tokelau 86282 Zone:2
 getNumberofCities Tokelau 86282 Zone:2
@@ -1513,7 +1513,7 @@ getNumberofCities Japan 35776 Zone:5
 getNumberofCities Japan 35776 Zone:5
 getNumberofCities Kenya 10116 Zone:2
 getNumberofCities Pakistan 21858 Zone:5
-getNumberofCities United Kingdom 17590 Zone:2
+getNumberofCities UnitedKingdom 17590 Zone:2
 getNumberofCities Philippines 26860 Zone:3
 getNumberofCities Philippines 26860 Zone:3
 getNumberofCities Philippines 26860 Zone:3
@@ -1531,7 +1531,7 @@ getNumberofCities Guam 16010 Zone:1
 getNumberofCities Kuwait 31368 Zone:3
 getNumberofCities Kuwait 31368 Zone:3
 getNumberofCities Bolivia 26325 Zone:4
-getNumberofCities United Kingdom 62410 Zone:2
+getNumberofCities UnitedKingdom 62410 Zone:2
 getNumberofCities Ghana 35231 Zone:2
 getNumberofCities Kuwait 39518 Zone:1
 getNumberofCities Kuwait 39518 Zone:1
@@ -1546,10 +1546,10 @@ getNumberofCities Georgia 90050 Zone:3
 getNumberofCities Thailand 54892 Zone:5
 getNumberofCities Thailand 54892 Zone:5
 getNumberofCities Thailand 54892 Zone:5
-getNumberofCities United Kingdom 33091 Zone:2
+getNumberofCities UnitedKingdom 33091 Zone:2
 getNumberofCities Guyana 23776 Zone:3
 getNumberofCities Guyana 23776 Zone:3
-getNumberofCities United Kingdom 34073 Zone:4
+getNumberofCities UnitedKingdom 34073 Zone:4
 getNumberofCities Cambodia 38113 Zone:1
 getNumberofCities  39109 Zone:3
 getNumberofCities Netherlands 21438 Zone:4
