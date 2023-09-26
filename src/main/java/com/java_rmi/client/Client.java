@@ -1,7 +1,6 @@
 package com.java_rmi.client;
 
 import com.java_rmi.load_balancer.LoadBalancerInterface;
-import com.java_rmi.load_balancer.LoadBalancerServer;
 import com.java_rmi.server.ServerAllocation;
 import com.java_rmi.server.ServerImplementation;
 
@@ -109,8 +108,6 @@ public class Client {
 
     public void clientStarter(){
         try {
-            LoadBalancerServer loadBalancerServer = new LoadBalancerServer();
-            loadBalancerServer.loadBalancerStarter();
             // Initialize RMI registry connection to the LoadBalancer
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             LoadBalancerInterface loadBalancer = (LoadBalancerInterface) registry.lookup("LoadBalancer");
