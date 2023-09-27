@@ -2,13 +2,14 @@ package com.java_rmi.client;
 
 import com.java_rmi.load_balancer.LoadBalancerInterface;
 import com.java_rmi.server.ServerAllocation;
-import com.java_rmi.server.ServerImplementation;
+import com.java_rmi.server.ServerInterface;
 
 import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -39,7 +40,10 @@ public class Client {
         try {
             long startTime = System.currentTimeMillis();
             long result = 0;
-            ServerImplementation server = new ServerImplementation();
+
+//          Initialize RMI registry connection to the Server
+            Registry registry = LocateRegistry.getRegistry();
+            ServerInterface server = (ServerInterface) registry.lookup("LoadServer");
 
             // Call the appropriate server method based on the methodName and pass the arguments
             if (methodName.equals("getPopulationofCountry")) {
@@ -72,8 +76,9 @@ public class Client {
 
             return result;
 
-        } catch (RemoteException e) {
+        } catch (RemoteException | NotBoundException e) {
             System.out.println("Error calling server method!!!");
+            e.printStackTrace();
             return -1;
         }
     }
