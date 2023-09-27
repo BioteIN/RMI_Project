@@ -41,7 +41,10 @@ public class Client {
             long startTime = System.currentTimeMillis();
             long result = 0;
 
-//          Initialize RMI registry connection to the Server
+            /**
+             * 2) The client should lookup server objects using rmi registry
+             * Initialize RMI registry connection to the Server
+             */
             Registry registry = LocateRegistry.getRegistry();
             ServerInterface server = (ServerInterface) registry.lookup("LoadServer");
 

@@ -188,7 +188,10 @@ public class LoadBalancerServer extends UnicastRemoteObject implements LoadBalan
                     // Bind the LoadBalancerServer to the RMI registry with the name "LoadBalancer"
                     registry.bind("LoadBalancer", loadBalancer);
 
-                    // Bind the Server to the RMI registry with the name "LoadServer"
+                    /**
+                     * 1) The servers need to registered as rmi objects
+                     * Bind the Server to the RMI registry with the name "LoadServer"
+                     */
                     ServerImplementation server = new ServerImplementation();
                     registry.bind("LoadServer", server);
 
