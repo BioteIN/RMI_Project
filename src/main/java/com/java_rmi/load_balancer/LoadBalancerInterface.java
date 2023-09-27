@@ -17,6 +17,6 @@ public interface LoadBalancerInterface extends Remote {
      * @throws RemoteException If there is an issue with RMI communication.
      */
     ServerAllocation requestServerAllocation(int clientZone) throws RemoteException;
-
+    public void loadBalancerStarter() throws RemoteException;
 }
 
