@@ -135,10 +135,10 @@ public class Client {
 
             // Input and output file paths
             String inputFile = "src\\main\\java\\com\\java_rmi\\client\\exercise_1_input.txt";
-            String outputFile = "src\\main\\java\\com\\java_rmi\\client\\client_cache.txt"; //Specify the output file path for the client cache.
+            String outputFile = "src\\main\\java\\com\\java_rmi\\client_cache.txt"; //Specify the output file path for the client cache.
 
-            String naiveServerOutputFile = "src\\main\\java\\com\\java_rmi\\server\\naive_server.txt"; // Specify the output file path for the naive server
-            String serverCacheOutputFile = "src\\main\\java\\com\\java_rmi\\server\\server_cache.txt"; // Specify the output file path for the server with caching
+            String naiveServerOutputFile = "src\\main\\java\\com\\java_rmi\\naive_server.txt"; // Specify the output file path for the naive server
+            String serverCacheOutputFile = "src\\main\\java\\com\\java_rmi\\server_cache.txt"; // Specify the output file path for the server with caching
 
             // Initialize FileReader and FileWriter
             BufferedReader reader = new BufferedReader(new FileReader(inputFile));
